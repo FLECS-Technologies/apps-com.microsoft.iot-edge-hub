@@ -1,37 +1,31 @@
 {
     "$schema": "https://raw.githubusercontent.com/FLECS-Technologies/app-sdk/main/manifest.schema.json",
-    "_schemaVersion": "2.0.0",
-    "app": "",
+    "_schemaVersion": "3.0.0",
+    "app": "com.microsoft.iot-edge-hub",
     "version": "##VERSION##",
     "revision": "0",
-    "image": "flecs.azurecr.io/",
+    "image": "flecs.azurecr.io/com.microsoft.iot-edge-hub",
     "multiInstance": false,
     "editor": "",
-    "args": [
-        "--launch-arg-1",
-        "--launch-arg-2=8000"
-    ],
-    "capabilities": [],
     "conffiles": [
-        "default.conf:/etc/my-app/default.conf",
-        "default.conf:/etc/my-app/default.conf:ro",
-        "default.conf:/etc/my-app/default.conf:rw"
-    ],
-    "devices": [
-        "/dev/net/tun"
+        "appsettings_hub.json:/app/appsettings_hub.json"
     ],
     "env": [
-        "MY_ENV=value"
+        "EdgeModuleHubServerCertificateFile=${{xx_xx}}}",
+        "EdgeModuleHubServerCAChainCertificateFile=${{xx_xx}}}",
+        "EdgeHubDevServerCertificateFile=${{xx_xx}}}",
+        "EdgeHubDevTrustBundleFile=${{xx_xx}}}",
+        "EdgeHubDevServerPrivateKeyFile=${{xx_xx}}}",
+        "IOTEDGE_MODULEID=$edgeHub",
+        "IOTEDGE_WORKLOADURI=http://<hostname>:8081",
+        "IOTEDGE_APIVERSION=2020-07-07",
+        "EDGEDEVICEHOSTNAME=<your_hostname>",
+        "IOTEDGE_MODULEGENERATIONID=<generationid>"
     ],
-    "ports": [
-        "12345:12345"
-    ],
-    "volumes": [
-        "my-app-etc:/etc/my-app",
-        "/var/lib/my-app:/var/lib/my-app"
-    ],
-    "labels": [
-        "org.my.label",
-        "org.my.label-with-value=Some custom label value"
+    "ports":[
+            "1883:1883",
+            "8883:8883",
+            "5671:5671",
+            "443:443"
     ]
 }
